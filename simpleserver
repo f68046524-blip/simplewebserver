@@ -1,0 +1,57 @@
+from http.server import HTTPServer, BaseHTTPRequestHandler
+content = """
+<html>
+    <head>
+        <title> my hobbies </title>
+    </head>
+    <body bgcolor="white">
+<h1 align="center">FAISAL</h1>
+<h2 align="center">26018146</h2>
+<u>Table</u>
+<table border="1" cellspacing="5" cellpading="5">
+    <caption><b><u><h1>aboutlaptop</h1></u></b></caption>
+    <tr>
+        <th>SNO</th>
+        <th>DEVICE TYPE</th>
+        <th>info</th>
+    </tr>
+    <tr>
+        <th>1</th>
+        <td>Devicename</td>
+        <td>FAISAL@2008</td>
+    </tr>
+    <tr>
+        <th>2</th>
+        <td>processor</td>
+        <td>intel i5</td>
+    </tr>
+    <tr>
+        <th>3</th>
+        <td>ram</td>
+        <td>16gb</td>
+    </tr>
+    <tr>
+        <th>4</th>
+        <td>graphics</td>
+        <td>intel128</td>
+    </tr>
+        <tr>
+            <th>5</th>
+            <td>storage</td>
+            <td>512</td>
+        </tr>
+  </table>
+ </body>
+</html>
+"""
+class myhandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        print("Client request received")
+        self.send_response(200)
+        self.send_header('content-type', 'text/html; charset=utf-8')
+        self.end_headers()
+        self.wfile.write(content.encode())
+server_address = ('',8000)
+httpd = HTTPServer(server_address,myhandler)
+print("my own webserver is running successfully...")
+httpd.serve_forever()
